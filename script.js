@@ -10,6 +10,17 @@ function convertToRoman(num) {
     };
 
   //your code here
+	let roman = ''
+	let romanNumerals = Object.values(obj)
+	for(let i=0; i<romanNumerals.length; i++){
+		let index = romanNumerals[i][0]
+		let value = romanNumerals[i][1]
+		while(num>=value){
+			num-=value;
+			roman+=index
+		}
+	}
+	return roman
 
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
