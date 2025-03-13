@@ -12,12 +12,27 @@ function convertToRoman(num) {
   //your code here
 	let roman = ''
 	let romanNumerals = Object.values(obj)
-	for(let i=0; i<romanNumerals.length; i++){
-		let index = romanNumerals[i][0]
-		let value = romanNumerals[i][1]
+
+	    const subtractiveCases = {
+        900: 'CM', 400: 'CD',
+        90: 'XC', 40: 'XL',
+        9: 'IX', 4: 'IV'
+    };
+
+    for (let i = 0; i < romanNumerals.length; i++) {
+        let symbol = romanNumerals[i][0]; // Roman numeral
+        let value = romanNumerals[i][1];  // Corresponding number
+
+        // Check if num contains a subtractive case
+        if (subtractiveCases[num]) {
+            roman += subtractiveCases[num];
+            num -= num;  // Fully subtract num since it's a match
+            break; 
+        }
+	
 		while(num>=value){
 			num-=value;
-			roman+=index
+			roman+=symbol
 		}
 	}
 	return roman
